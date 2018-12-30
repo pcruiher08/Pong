@@ -9,4 +9,5 @@ void draw() {
   background(0);
   puck.show();
   puck.update();
+  puck.edges();
 }

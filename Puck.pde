@@ -1,8 +1,8 @@
 class Puck {
   float x = width/2;
   float y = height/2;
-  float xSpeed = 3;
-  float ySpeed = 1;
+  float xSpeed = 32;
+  float ySpeed = 12;
 
   void update() {
     x += xSpeed;
@@ -10,8 +10,11 @@ class Puck {
   }
   
   void edges(){
-    if(y<0 || y>height){
+    if(y < 0 || y > height){
       ySpeed *= -1;
+    }
+    if(x < 0 || x > width){
+      xSpeed *= -1;
     }
   }
 
