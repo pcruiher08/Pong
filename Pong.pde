@@ -1,3 +1,7 @@
+import processing.sound.*;
+
+SoundFile ding;
+
 Puck puck;
 Paddle rightPaddle;
 Paddle leftPaddle;
@@ -5,6 +9,7 @@ int rightScore = 0;
 int leftScore = 0;
 void setup() {
   size(600, 400);
+  ding = new SoundFile(this, "ding.mp3");
   puck = new Puck();
   rightPaddle = new Paddle("Right");
   leftPaddle = new Paddle("Left");

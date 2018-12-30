@@ -11,23 +11,35 @@ class Puck {
   }
   
   void restart(){
-    float angle = random(TWO_PI);
-    xSpeed = 5 * cos(angle * PI / 180);
-    ySpeed = 5 * sin(angle * PI / 180);
+    float angle = random(-PI / 4,PI / 4);
+    xSpeed = 5 * cos(angle);
+    ySpeed = 5 * sin(angle);
+    if(random(1) < 0.5){
+      xSpeed*=-1;
+    }
     x = width/2;
     y = height/2;
   }
   
   void checkPaddle(Paddle p){
     if(p.right){
-      if(y < p.y + p.h/2 && y > p.y - p.h/2 && x + diameter/2 > p.x - p.w/2){
-        xSpeed *= -1;
+      if(y < p.y + p.h/2 && y > p.y - p.h/2 && x + diameter/2 > p.x - p.w/2 && x < p.x){
+        float diff = y - (p.y - p.h/2);
+        float angle = map(diff, 0, p.h, radians(255), radians(135));
+        xSpeed = 5 * cos(angle);
+        ySpeed = 5 * sin(angle);
+        x = p.x - p.w/2 - diameter/2;
       }
     }
     
     if(p.left){
-      if(y < p.y + p.h/2 && y > p.y - p.h/2 && x - diameter/2 < p.x + p.w/2){
-        xSpeed *= -1;
+      if(y < p.y + p.h/2 && y > p.y - p.h/2 && x - diameter/2 < p.x + p.w/2 && x > p.x){
+        float diff = y - (p.y - p.h/2);
+        float rad = radians(45);
+        float angle = map(diff, 0, p.h, -rad, rad);
+        xSpeed = 5 * cos(angle);
+        ySpeed = 5 * sin(angle);
+        x = p.x + p.w/2 + diameter/2;
       }
     }
   }
@@ -48,11 +60,13 @@ class Puck {
     }
     */
     //for normal boundaries
-    if(x < 0){
+    if(x + diameter/2 < 0){
+      ding.play();
       rightScore++;
       restart();
     }
-    if(x > width){
+    if(x - diameter/2 > width){
+      ding.play();
       leftScore++;
       restart();
     }
