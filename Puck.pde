@@ -7,18 +7,19 @@ class Puck {
   float ySpeed;
   
   Puck(){
-
+    xSpeed = 3;
+    ySpeed = 1;
   }
   
   void checkPaddle(Paddle p){
     if(p.right){
-      if((x + diameter/2 > p.x - p.w/2) && (y < (p.y + p.h/2)) && (y >(p.y - p.h/2))){
+      if(y < p.y + p.h/2 && y > p.y - p.h/2 && x + diameter/2 > p.x - p.w/2){
         xSpeed *= -1;
       }
     }
     
     if(p.left){
-      if((x + diameter/2 > p.x - p.w/2) && (y < (p.y + p.h/2)) && (y >(p.y - p.h/2))){
+      if(y < p.y + p.h/2 && y > p.y - p.h/2 && x - diameter/2 < p.x + p.w/2){
         xSpeed *= -1;
       }
     }
