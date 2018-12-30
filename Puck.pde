@@ -7,8 +7,15 @@ class Puck {
   float ySpeed;
   
   Puck(){
-    xSpeed = 3;
-    ySpeed = 1;
+    restart();
+  }
+  
+  void restart(){
+    float angle = random(TWO_PI);
+    xSpeed = 5 * cos(angle * PI / 180);
+    ySpeed = 5 * sin(angle * PI / 180);
+    x = width/2;
+    y = height/2;
   }
   
   void checkPaddle(Paddle p){
@@ -42,12 +49,12 @@ class Puck {
     */
     //for normal boundaries
     if(x < 0){
-      x = width/2;
-      y = height/2;
+      rightScore++;
+      restart();
     }
     if(x > width){
-      x = width/2;
-      y = height/2;
+      leftScore++;
+      restart();
     }
     
   }

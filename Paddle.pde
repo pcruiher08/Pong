@@ -4,6 +4,7 @@ class Paddle{
   float y = height/2;
   float w = 10;
   float h = height/3;
+  float yChange = 0;
   
   boolean right = false;
   boolean left = false;
@@ -20,9 +21,13 @@ class Paddle{
     }
   }
   
-  void move(float steps){
-    y+=steps;
+  void update(){
+    y += yChange; 
     y = constrain(y, h/2, height-h/2);
+  }
+  
+  void move(float steps){
+    yChange = steps;
   }
   
   void show(){

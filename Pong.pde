@@ -1,7 +1,8 @@
 Puck puck;
 Paddle rightPaddle;
 Paddle leftPaddle;
-
+int rightScore = 0;
+int leftScore = 0;
 void setup() {
   size(600, 400);
   puck = new Puck();
@@ -15,11 +16,20 @@ void draw() {
   puck.checkPaddle(leftPaddle);
   puck.checkPaddle(rightPaddle);
   
-  puck.show();
+
   puck.update();
   puck.edges();
+  puck.show();
+  
   rightPaddle.show();
+  rightPaddle.update();
   leftPaddle.show();
+  leftPaddle.update();
+  
+  fill(255);
+  textSize(32);
+  text(leftScore, 64, 40);
+  text(rightScore, width-64, 40);
 }
 
 void keyReleased(){
