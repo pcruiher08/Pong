@@ -12,12 +12,17 @@ class Paddle{
     if(s == "Right"){
       right = true;
       left = false;
-      x = width - w/2;
+      x = width - w;
     }else if(s == "Left"){
       right = false;
       left = true;
-      x = w/2;
+      x = w;
     }
+  }
+  
+  void move(float steps){
+    y+=steps;
+    y = constrain(y, h/2, height-h/2);
   }
   
   void show(){
