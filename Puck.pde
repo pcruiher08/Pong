@@ -5,8 +5,14 @@ class Puck {
   float ySpeed = 1;
 
   void update() {
-    x = x + xSpeed;
-    y = y + ySpeed;
+    x += xSpeed;
+    y += ySpeed;
+  }
+  
+  void edges(){
+    if(y<0 || y>height){
+      ySpeed *= -1;
+    }
   }
 
   void show() {
