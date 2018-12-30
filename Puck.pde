@@ -1,8 +1,10 @@
+  int radius = 24;
+
 class Puck {
   float x = width/2;
   float y = height/2;
-  float xSpeed = 32;
-  float ySpeed = 12;
+  float xSpeed = 3;
+  float ySpeed = 1;
 
   void update() {
     x += xSpeed;
@@ -10,16 +12,18 @@ class Puck {
   }
   
   void edges(){
-    if(y < 0 || y > height){
+    if(y-radius/2 < 0 || y+radius/2 > height){
       ySpeed *= -1;
     }
-    if(x < 0 || x > width){
+    /*
+    if(x-radius/2 < 0 || x+radius/2 > width){
       xSpeed *= -1;
     }
+    */
   }
 
   void show() {
     fill(255);
-    ellipse(x, y, 24, 24);
+    ellipse(x, y, radius, radius);
   }
 }
